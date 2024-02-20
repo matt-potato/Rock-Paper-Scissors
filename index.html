@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Paper Scissors</title>
+</head>
+<body>
+    <script>
+        // randomly generate a string of either: rock, paper, or scissors
+        function getComputerChoice() {
+            let gameChoices = ['rock', 'paper', 'scissors'];
+            let computerChoice = gameChoices[Math.floor(Math.random() * gameChoices.length)];
+            console.log(`Computer Choice: ${computerChoice}`);
+            return computerChoice;
+        }
+        
+        // play rps by taking computer and user's selection (prompt) and comparing who wins
+        let playerChoice = '';
+        let playerScore = 0;
+        let computerScore = 0;
+        function playRound(playerSelection, computerSelection) {
+            playerChoice = prompt('Enter Rock, Paper, or Scissors').toLowerCase();
+            if (playerChoice === 'rock' && computerSelection === 'scissors' || playerChoice === 'paper' && computerSelection === 'rock' || playerChoice === 'scissors' && computerSelection === 'paper') {
+                return console.log(`You win! ${playerChoice} beats ${computerSelection}`);
+                playerScore++;
+            }
+            else if (computerSelection === 'rock' && playerChoice === 'scissors' || computerSelection === 'paper' && playerChoice === 'rock' || computerSelection === 'scissors' && playerChoice === 'paper') {
+                return console.log(`You lose! ${computerSelection} beats ${playerChoice}`);
+                computerScore++;
+            }
+            else {
+                return console.log(`Tie! ${playerChoice} ties with ${computerSelection}`);
+            }
+        }
+        // Keep track of score, best out of 5
+        for(let i = 1; i <= 5; i++) {
+            playRound(playerChoice,getComputerChoice());
+            console.log(playerScore);
+            console.log(computerScore);
+        }
+        console.log(`Player Choice: ${playerChoice}`);
+    </script>
+</body>
+</html>
