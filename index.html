@@ -14,20 +14,20 @@
             console.log(`Computer Choice: ${computerChoice}`);
             return computerChoice;
         }
-        
         // play rps by taking computer and user's selection (prompt) and comparing who wins
         let playerChoice = '';
         let playerScore = 0;
         let computerScore = 0;
+        
         function playRound(playerSelection, computerSelection) {
             playerChoice = prompt('Enter Rock, Paper, or Scissors').toLowerCase();
             if (playerChoice === 'rock' && computerSelection === 'scissors' || playerChoice === 'paper' && computerSelection === 'rock' || playerChoice === 'scissors' && computerSelection === 'paper') {
-                return console.log(`You win! ${playerChoice} beats ${computerSelection}`);
                 playerScore++;
+                return console.log(`You win! ${playerChoice} beats ${computerSelection}`);
             }
             else if (computerSelection === 'rock' && playerChoice === 'scissors' || computerSelection === 'paper' && playerChoice === 'rock' || computerSelection === 'scissors' && playerChoice === 'paper') {
-                return console.log(`You lose! ${computerSelection} beats ${playerChoice}`);
                 computerScore++;
+                return console.log(`You lose! ${computerSelection} beats ${playerChoice}`);
             }
             else {
                 return console.log(`Tie! ${playerChoice} ties with ${computerSelection}`);
@@ -35,9 +35,15 @@
         }
         // Keep track of score, best out of 5
         for(let i = 1; i <= 5; i++) {
-            playRound(playerChoice,getComputerChoice());
-            console.log(playerScore);
-            console.log(computerScore);
+            if(playerScore < 3 && computerScore < 3) {
+                playRound(playerChoice,getComputerChoice());
+            }
+            if (playerScore === 3) {
+                console.log('You win the game!');
+                playerChoice = '';
+            } else if (computerScore === 3) {
+                console.log('You lose the game!');
+            }
         }
         console.log(`Player Choice: ${playerChoice}`);
     </script>
