@@ -1,9 +1,10 @@
 "use strict";
+
 // randomly generate a string of either: rock, paper, or scissors
 function getComputerChoice() {
     let gameChoices = ['rock', 'paper', 'scissors'];
     let computerChoice = gameChoices[Math.floor(Math.random() * gameChoices.length)];
-    console.log(`Computer Choice: ${computerChoice}`);
+    
     return computerChoice;
 }
 // set / reset score
@@ -25,7 +26,6 @@ divComputerScore.textContent = computerScore;
 function playRound(playerSelection, computerSelection) {
     computerSelection = getComputerChoice();
     playerChoice = playerSelection.target.id;
-
     if (playerChoice === 'rock' && computerSelection === 'scissors' || 
         playerChoice === 'paper' && computerSelection === 'rock' || 
         playerChoice === 'scissors' && computerSelection === 'paper') {
@@ -54,7 +54,6 @@ function playRound(playerSelection, computerSelection) {
 // disable buttons when game over
 function disable() {
     btnDisable.forEach((button) => {
-        console.log(button);
         button.setAttribute('disabled','');
     });
 }
