@@ -4,48 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rock Paper Scissors</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="rps-styles.css">
 </head>
 <body>
-    <script>
-        // randomly generate a string of either: rock, paper, or scissors
-        function getComputerChoice() {
-            let gameChoices = ['rock', 'paper', 'scissors'];
-            let computerChoice = gameChoices[Math.floor(Math.random() * gameChoices.length)];
-            console.log(`Computer Choice: ${computerChoice}`);
-            return computerChoice;
-        }
-        // play rps by taking computer and user's selection (prompt) and comparing who wins
-        let playerChoice = '';
-        let playerScore = 0;
-        let computerScore = 0;
-        
-        function playRound(playerSelection, computerSelection) {
-            playerChoice = prompt('Enter Rock, Paper, or Scissors').toLowerCase();
-            if (playerChoice === 'rock' && computerSelection === 'scissors' || playerChoice === 'paper' && computerSelection === 'rock' || playerChoice === 'scissors' && computerSelection === 'paper') {
-                playerScore++;
-                return console.log(`You win! ${playerChoice} beats ${computerSelection}`);
-            }
-            else if (computerSelection === 'rock' && playerChoice === 'scissors' || computerSelection === 'paper' && playerChoice === 'rock' || computerSelection === 'scissors' && playerChoice === 'paper') {
-                computerScore++;
-                return console.log(`You lose! ${computerSelection} beats ${playerChoice}`);
-            }
-            else {
-                return console.log(`Tie! ${playerChoice} ties with ${computerSelection}`);
-            }
-        }
-        // Keep track of score, best out of 5
-        for(let i = 1; i <= 5; i++) {
-            if(playerScore < 3 && computerScore < 3) {
-                playRound(playerChoice,getComputerChoice());
-            }
-            if (playerScore === 3) {
-                console.log('You win the game!');
-                playerChoice = '';
-            } else if (computerScore === 3) {
-                console.log('You lose the game!');
-            }
-        }
-        console.log(`Player Choice: ${playerChoice}`);
-    </script>
+    <div class="wrap">
+        <h1>Rock, Paper, Scissors</h1>
+        <div class="score-wrap">
+            <div class="score">
+                <div id="computer-score"></div>
+                <span>Computer</span>
+            </div>
+            <div class="score">
+                <div id="player-score"></div>
+                <span>Player</span>
+            </div>
+        </div>
+        <div id="message">Click to Play!</div>
+        <div class="buttons">
+            <button id="rock" type="button"><i class="fa-regular fa-hand-back-fist"></i>Rock</button>
+            <button id="paper" type="button"><i class="fa-regular fa-hand"></i>Paper</button>
+            <button id="scissors" type="button"><i class="fa-regular fa-hand-scissors"></i>Scissors</button>
+        </div>
+        <a href="javascript:void(0)" id="reset"><i class="fa-regular fa-circle-xmark"></i>Reset</a>  
+    </div>
+    <script src="rps-script.js"></script>
 </body>
 </html>
